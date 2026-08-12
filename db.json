@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "Coquette Blouse",
+    "category": "Shirts",
+    "price": 25.5,
+    "description": "Coquette blouses and soft-girl staples."
+  },
+  {
+    "id": "2",
+    "name": "Vintage Pleated Skirt",
+    "category": "Skirts",
+    "price": 30,
+    "description": "Classic vintage pleated skirt."
+  }
+]
