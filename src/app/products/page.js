@@ -57,7 +57,7 @@ function ProductsContent() {
       list.sort((a, b) => a.name.localeCompare(b.name));
     }
     return list;
-  }, [category, sort, searchQuery]);
+  }, [catalog, category, sort, searchQuery]);
 
   return (
     <>
