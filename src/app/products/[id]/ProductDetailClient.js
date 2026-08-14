@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation"; // បន្ថែម Router ដើម្បីបញ្ជូនទៅកាន់ទំព័រ Checkout ភ្លាមៗ
 import Link from "next/link";
 
 export default function ProductDetailClient({ product }) {
   const { addItem } = useCart();
+  const router = useRouter();
   
-  // ធានាទាញយកឈ្មោះពណ៌បានត្រឹមត្រូវ ទោះជា format យ៉ាងណាក៏ដោយ
   const initialColor = product?.colors?.[0] 
     ? (typeof product.colors[0] === 'object' ? product.colors[0].name : product.colors[0])
     : null;
@@ -19,6 +20,11 @@ export default function ProductDetailClient({ product }) {
     addItem(product, 1, { color: selectedColor });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
+  };
+
+  const handleBuyNow = () => {
+    addItem(product, 1, { color: selectedColor });
+    router.push("/checkout"); // ទៅកាន់ទំព័រ Checkout ភ្លាមៗតែម្ដង
   };
 
   return (
@@ -84,35 +90,57 @@ export default function ProductDetailClient({ product }) {
           </div>
         )}
 
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-          <button
-            onClick={handleAddToCart}
-            style={{
-              flex: 1,
-              padding: "14px",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer",
-              backgroundColor: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: "8px",
-            }}
-          >
-            {added ? "Added to Cart! ✓" : "Add to Cart"}
-          </button>
+        {/* ប៊ូតុងបញ្ជាទិញ */}
+        <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              onClick={handleAddToCart}
+              style={{
+                flex: 1,
+                padding: "14px",
+                fontSize: "15px",
+                fontWeight: "600",
+                cursor: "pointer",
+                backgroundColor: "#fff",
+                color: "#000",
+                border: "2px solid #000",
+                borderRadius: "8px",
+              }}
+            >
+              {added ? "Added to Cart! ✓" : "Add to Cart"}
+            </button>
+
+            <button
+              onClick={handleBuyNow}
+              style={{
+                flex: 1,
+                padding: "14px",
+                fontSize: "15px",
+                fontWeight: "600",
+                cursor: "pointer",
+                backgroundColor: "#000",
+                color: "#fff",
+                border: "none",
+                borderRadius: "8px",
+              }}
+            >
+              Buy Now
+            </button>
+          </div>
 
           <Link
             href="/products"
             style={{
-              padding: "14px 20px",
+              padding: "10px",
               backgroundColor: "#f0f0f0",
               color: "#333",
               borderRadius: "8px",
               textDecoration: "none",
+              textAlign: "center",
+              fontSize: "14px",
             }}
           >
-            Back
+            Back to Products
           </Link>
         </div>
       </div>
