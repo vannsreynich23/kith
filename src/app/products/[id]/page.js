@@ -1,12 +1,11 @@
 "use client";
 
 import { use, useState } from "react";
-import { products, getProductById } from "@/data/products";
+import { getProductById } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
 export default function ProductDetailPage({ params }) {
-  // แกะ lấy id จาก URL ໂດຍໃຊ້ React.use(params) សម្រាប់ Next.js ជំនាន់ថ្មី
   const resolvedParams = use(params);
   const product = getProductById(resolvedParams.id);
 
@@ -33,13 +32,11 @@ export default function ProductDetailPage({ params }) {
 
   return (
     <div className="product-detail-container" style={{ maxWidth: "1100px", margin: "40px auto", padding: "0 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-      {/* Hình ảnhផលិតផល */}
       <div className="product-image-large">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={product.image} alt={product.name} style={{ width: "100%", borderRadius: "12px", objectFit: "cover" }} />
       </div>
 
-      {/* ព័ត៌មាន និងប៊ូតុងបញ្ជាទិញ */}
       <div className="product-details-info">
         <span className="cat" style={{ fontSize: "13px", color: "#888", textTransform: "uppercase", letterSpacing: "1px" }}>
           {product.category}
@@ -54,7 +51,6 @@ export default function ProductDetailPage({ params }) {
           {product.description}
         </p>
 
-        {/* 1. ရွေးချယ်ពណ៌ (Colors) */}
         {product.colors && product.colors.length > 0 && (
           <div style={{ marginBottom: "25px" }}>
             <label style={{ display: "block", fontWeight: "600", marginBottom: "8px" }}>Color: {selectedColor}</label>
@@ -78,7 +74,6 @@ export default function ProductDetailPage({ params }) {
           </div>
         )}
 
-        {/* 2. ប៊ូតុង Add to Cart */}
         <button
           onClick={handleAddToCart}
           className="btn btn-primary"
