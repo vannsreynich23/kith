@@ -1,26 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/productcard";
 import { products as fallbackProducts } from "@/data/products";
 
 const CATEGORIES = ["All", "Shirts", "Skirts", "Dresses", "Pants", "Shorts", "Jeans", "Outerwears"];
 
-export default function ProductsPage() {
+function ProductsContent() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("Featured");
-  const [searchQuery, setSearchQuery] = useState("");
   const catalog = fallbackProducts;
 
   const visible = useMemo(() => {
     let list = [...catalog];
 
+    // ប្រសិនបើមាន Search Query ពី Header គឺតម្រងតាមហ្នឹង
     if (searchQuery) {
       list = list.filter((p) =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase())
       );
     } else if (category !== "All") {
+      // បើគ្មាន Search ទេ ទើបត្រងតាម Category
       list = list.filter((p) => p.category === category);
     }
 
@@ -41,39 +46,14 @@ export default function ProductsPage() {
         <span className="count">{`${visible.length} items found`}</span>
       </div>
 
-      {/* Search Input & Toolbar */}
-      <div style={{ display: "flex", gap: "15px", marginBottom: "20px", flexWrap: "wrap" }}>
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ padding: "10px 15px", borderRadius: "8px", border: "1px solid #ddd", flex: 1, minWidth: "220px" }}
-        />
-        
-        <select
-          className="select-box"
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-          style={{ padding: "10px 15px", borderRadius: "8px", border: "1px solid #ddd" }}
-        >
-          <option>Featured</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Name: A-Z</option>
-        </select>
-      </div>
-
-      <div className="page-toolbar" style={{ marginBottom: "30px" }}>
+      {/* Toolbar សម្រាប់ Sort និង Filter Categories (លុប Search input ចេញ ព្រោះយើងប្រើ Header Search រួចហើយ) */}
+      <div className="page-toolbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px", flexWrap: "wrap", gap: "15px" }}>
         <div className="filters-row" style={{ display: "flex", gap: "10px", flexWrap: "wrap", padding: 0, margin: 0 }}>
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               className={`pill ${category === cat && !searchQuery ? "active" : ""}`}
-              onClick={() => {
-                setCategory(cat);
-                setSearchQuery("");
-              }}
+              onClick={() => setCategory(cat)}
               style={{
                 padding: "8px 16px",
                 borderRadius: "20px",
@@ -87,6 +67,18 @@ export default function ProductsPage() {
             </button>
           ))}
         </div>
+
+        <select
+          className="select-box"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          style={{ padding: "10px 15px", borderRadius: "8px", border: "1px solid #ddd" }}
+        >
+          <option>Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Name: A-Z</option>
+        </select>
       </div>
 
       <section className="section">
@@ -104,5 +96,13 @@ export default function ProductsPage() {
         )}
       </section>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div style={{ textAlign: "center", padding: "50px" }}>Loading products...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }

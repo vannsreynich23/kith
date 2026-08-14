@@ -8,8 +8,9 @@ export default function SearchBar() {
 
   function handleSearch(e) {
     e.preventDefault();
-    if (query.trim()) {
-      router.push(`/products?search=${encodeURIComponent(query)}`);
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      router.push(`/products?search=${encodeURIComponent(trimmedQuery)}`);
     }
   }
 
