@@ -1,6 +1,5 @@
 import { getProductById } from "@/data/products";
 import Link from "next/link";
-import AddToCartButton from "./AddToCartButton"; // ឬប្រើ Client Component ខាងក្រោម
 
 export default async function ProductDetailPage({ params }) {
   const resolvedParams = await params;
