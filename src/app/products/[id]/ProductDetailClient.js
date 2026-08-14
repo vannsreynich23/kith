@@ -6,21 +6,23 @@ import Link from "next/link";
 
 export default function ProductDetailClient({ product }) {
   const { addItem } = useCart();
-  const [selectedColor, setSelectedColor] = useState(
-    product?.colors?.[0]?.name ?? null
-  );
-  const [quantity, setQuantity] = useState(1);
+  
+  // ធានាទាញយកឈ្មោះពណ៌បានត្រឹមត្រូវ ទោះជា format យ៉ាងណាក៏ដោយ
+  const initialColor = product?.colors?.[0] 
+    ? (typeof product.colors[0] === 'object' ? product.colors[0].name : product.colors[0])
+    : null;
+
+  const [selectedColor, setSelectedColor] = useState(initialColor);
   const [added, setAdded] = useState(false);
 
   const handleAddToCart = () => {
-    addItem(product, quantity, { color: selectedColor });
+    addItem(product, 1, { color: selectedColor });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
   return (
     <div
-      className="product-detail-container"
       style={{
         maxWidth: "1100px",
         margin: "40px auto",
@@ -30,7 +32,7 @@ export default function ProductDetailClient({ product }) {
         gap: "40px",
       }}
     >
-      <div className="product-image-large">
+      <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.image}
@@ -39,31 +41,13 @@ export default function ProductDetailClient({ product }) {
         />
       </div>
 
-      <div className="product-details-info">
-        <span
-          className="cat"
-          style={{
-            fontSize: "13px",
-            color: "#888",
-            textTransform: "uppercase",
-            letterSpacing: "1px",
-          }}
-        >
+      <div>
+        <span style={{ fontSize: "13px", color: "#888", textTransform: "uppercase" }}>
           {product.category}
         </span>
-        <h1 style={{ fontSize: "28px", margin: "10px 0 15px" }}>
-          {product.name}
-        </h1>
+        <h1 style={{ fontSize: "28px", margin: "10px 0 15px" }}>{product.name}</h1>
 
-        <div
-          className="price-row"
-          style={{
-            fontSize: "22px",
-            fontWeight: "bold",
-            marginBottom: "20px",
-            color: "var(--accent)",
-          }}
-        >
+        <div style={{ fontSize: "22px", fontWeight: "bold", marginBottom: "20px" }}>
           ${product.price.toFixed(2)}
         </div>
 
@@ -71,43 +55,35 @@ export default function ProductDetailClient({ product }) {
           {product.description}
         </p>
 
-        {/* ផ្នែកជ្រើសរើសពណ៌ */}
         {product.colors && product.colors.length > 0 && (
           <div style={{ marginBottom: "25px" }}>
-            <label
-              style={{
-                display: "block",
-                fontWeight: "600",
-                marginBottom: "8px",
-              }}
-            >
+            <label style={{ display: "block", fontWeight: "600", marginBottom: "8px" }}>
               Color: <span style={{ fontWeight: "normal" }}>{selectedColor}</span>
             </label>
             <div style={{ display: "flex", gap: "10px" }}>
-              {product.colors.map((c) => (
-                <button
-                  key={c.name}
-                  onClick={() => setSelectedColor(c.name)}
-                  style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "50%",
-                    backgroundColor: c.hex,
-                    border:
-                      selectedColor === c.name
-                        ? "3px solid #000"
-                        : "1px solid #ddd",
-                    cursor: "pointer",
-                    outline: "none",
-                  }}
-                  title={c.name}
-                />
-              ))}
+              {product.colors.map((c) => {
+                const colorName = typeof c === 'object' ? c.name : c;
+                const colorHex = typeof c === 'object' ? c.hex : c;
+                return (
+                  <button
+                    key={colorName}
+                    onClick={() => setSelectedColor(colorName)}
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                      backgroundColor: colorHex,
+                      border: selectedColor === colorName ? "3px solid #000" : "1px solid #ddd",
+                      cursor: "pointer",
+                    }}
+                    title={colorName}
+                  />
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* ប៊ូតុង Add to Cart និង ប៊ូតុង Back */}
         <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
           <button
             onClick={handleAddToCart}
@@ -134,8 +110,6 @@ export default function ProductDetailClient({ product }) {
               color: "#333",
               borderRadius: "8px",
               textDecoration: "none",
-              textAlign: "center",
-              fontWeight: "500",
             }}
           >
             Back
