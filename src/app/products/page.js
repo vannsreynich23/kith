@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, Suspense } from "react";
+import { useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/productcard";
 import { products as fallbackProducts } from "@/data/products";
@@ -13,29 +13,7 @@ function ProductsContent() {
 
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("Featured");
-  const [catalog, setCatalog] = useState(fallbackProducts);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadProducts() {
-      try {
-        const response = await fetch("/api/products");
-        if (!response.ok) {
-          throw new Error("Unable to fetch products");
-        }
-        const payload = await response.json();
-        const list = Array.isArray(payload) ? payload : fallbackProducts;
-        setCatalog(list);
-      } catch (error) {
-        console.warn("Falling back to static product catalog", error);
-        setCatalog(fallbackProducts);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadProducts();
-  }, []);
+  const catalog = fallbackProducts; // ប្រើប្រាស់ទិន្នន័យក្នុងស្រុកផ្ទាល់ មិនបាច់ fetch api ទៀតទេ
 
   const visible = useMemo(() => {
     let list = [...catalog];
@@ -63,7 +41,7 @@ function ProductsContent() {
     <>
       <div className="page-title">
         <h1>{searchQuery ? `Search Results for "${searchQuery}"` : "All Products"}</h1>
-        <span className="count">{loading ? "Loading..." : `${visible.length} items found`}</span>
+        <span className="count">{`${visible.length} items found`}</span>
       </div>
 
       <div className="page-toolbar">
