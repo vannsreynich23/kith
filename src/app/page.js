@@ -3,7 +3,9 @@ import ProductCard from "@/components/productcard";
 import { products } from "@/data/products"; 
 
 export default async function HomePage() {
-  const featured = products.slice(0, 4);
+  const featured = products.filter(
+    (p) => p.badge === "NEW" || p.badge === "BEST SELLER"
+  ).slice(0, 4);
 
   return (
     <>

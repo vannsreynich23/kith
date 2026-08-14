@@ -19,15 +19,21 @@ function ProductsContent() {
   const visible = useMemo(() => {
     let list = [...catalog];
 
-    if (searchQuery) {
-      list = list.filter((p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else if (category !== "All") {
+    // Filter by category first (if not "All")
+    if (category !== "All") {
       list = list.filter((p) => p.category === category);
     }
 
+    // Then filter by search query if present
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      list = list.filter((p) =>
+        p.name.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+    }
+
+    // Sort products
     if (sort === "Price: Low to High") {
       list.sort((a, b) => a.price - b.price);
     } else if (sort === "Price: High to Low") {
@@ -35,15 +41,21 @@ function ProductsContent() {
     } else if (sort === "Name: A-Z") {
       list.sort((a, b) => a.name.localeCompare(b.name));
     }
+    
     return list;
   }, [catalog, category, sort, searchQuery]);
 
   const handleCategoryClick = (cat) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
     if (cat === "All") {
-      router.push("/products");
+      params.delete("category");
     } else {
-      router.push(`/products?category=${encodeURIComponent(cat)}`);
+      params.set("category", cat);
     }
+
+    const queryStr = params.toString();
+    router.push(queryStr ? `/products?${queryStr}` : "/products");
   };
 
   const handleSortChange = (e) => {
@@ -63,7 +75,7 @@ function ProductsContent() {
       <div className="page-toolbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px", flexWrap: "wrap", gap: "15px" }}>
         <div className="filters-row" style={{ display: "flex", gap: "10px", flexWrap: "wrap", padding: 0, margin: 0 }}>
           {CATEGORIES.map((cat) => {
-            const isActive = searchQuery ? false : (cat === "All" ? !searchParams.get("category") || searchParams.get("category") === "All" : category === cat);
+            const isActive = cat === "All" ? category === "All" : category === cat;
             return (
               <button
                 key={cat}

@@ -76,7 +76,6 @@ img {
   padding: 20px 32px;
   border-bottom: 1px solid var(--line);
   background: var(--cream);
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 40;
@@ -183,7 +182,6 @@ img {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 48px;
   gap: 48px;
   align-items: center;
 }
@@ -269,7 +267,6 @@ img {
   position: relative;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  grid-gap: 16px;
   gap: 16px;
 }
 
@@ -400,7 +397,6 @@ img {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 22px;
   gap: 22px;
 }
 
@@ -458,7 +454,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex: 1 1;
+  flex: 1;
 }
 
 .product-card .cat {
@@ -525,7 +521,6 @@ img {
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 24px;
   gap: 24px;
   text-align: center;
 }
@@ -709,7 +704,7 @@ img {
 }
 
 .auth-toggle button {
-  flex: 1 1;
+  flex: 1;
   border: none;
   background: transparent;
   border-radius: 999px;
@@ -778,7 +773,6 @@ img {
   padding: 40px 32px 80px;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
   gap: 30px;
   align-items: flex-start;
 }
@@ -810,7 +804,7 @@ img {
 }
 
 .cart-item .body {
-  flex: 1 1;
+  flex: 1;
 }
 
 .cart-item .cat {
@@ -871,7 +865,6 @@ img {
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 26px;
-  position: -webkit-sticky;
   position: sticky;
   top: 100px;
 }
@@ -927,7 +920,6 @@ img {
   padding: 30px 32px 80px;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
   gap: 30px;
   align-items: flex-start;
 }
@@ -957,7 +949,6 @@ img {
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
   gap: 16px;
 }
 

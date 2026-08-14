@@ -12,12 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body>
-          
+      <html lang="en" suppressHydrationWarning>
+        <body className="flex flex-col min-h-screen bg-white text-gray-900 antialiased">
           <CartProvider>
             <Header />
-            {children}
+            <main className="flex-grow">
+              {children}
+            </main>
             <Footer />
           </CartProvider>
         </body>

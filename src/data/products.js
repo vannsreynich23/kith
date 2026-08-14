@@ -97,94 +97,140 @@ export const products = [
     ],
   },
   {
-    id: "bow-detail-crop-top",
-    name: "Bow Detail Crop Top",
-    category: "Tops",
-    price: 7.5,
+    id: "youowy-33-baseball-top",
+    name: "YOUOWY 33 Oversized Baseball Top",
+    category: "Shirts",
+    badge: "NEW",
+    price: 14.99,
     image:
-      "https://images.unsplash.com/photo-1551803091-e20673f15770?q=80&w=800&auto=format&fit=crop",
+      "https://i.pinimg.com/originals/e9/0f/76/e90f765ea10561e1452d4b854326ab54.png",
     description:
-      "Ribbed knit crop top with a hand-tied bow at the chest. Layer under overalls or wear solo.",
+      "A casual oversized baseball-style top featuring a bold YOUOWY 33 graphic on the back with a relaxed fit and three-quarter sleeves.",
     colors: [
-      { name: "Blush", hex: "#eeb8c4" },
-      { name: "Lavender", hex: "#c9b8e0" },
-      { name: "White", hex: "#faf7f2" },
-    ],
-  },
-  {
-    id: "lace-trim-camisole",
-    name: "Lace Trim Camisole",
-    category: "Tops",
-    price: 6.99,
-    image:
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
-    description:
-      "Silky slip camisole finished with delicate lace trim along the neckline and hem. A soft-girl closet staple.",
-    colors: [
-      { name: "Ivory", hex: "#f4ead9" },
-      { name: "Dusty Rose", hex: "#c98a96" },
+      { name: "Grey", hex: "#b3b3b3" },
       { name: "Black", hex: "#2b2b2b" },
-    ],
+      { name: "White", hex: "#ffffff" }
+  ],
   },
-  {
-    id: "gingham-sundress",
-    name: "Gingham Sundress",
-    category: "Dresses",
-    price: 15.99,
+    {
+    id: "plaid-tiered-shirt",
+    name: "Plaid Tiered Strap Shirt",
+    category: "Shirts",
+    price: 9.7,
     image:
-      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=800&auto=format&fit=crop",
+      "https://i.pinimg.com/1200x/48/67/d6/4867d67901a80342cd8f90e832133277.jpg",
     description:
-      "Fit-and-flare gingham sundress with adjustable straps and side pockets. Warm-weather essential.",
+      "A cute plaid tiered shirt featuring adjustable tie shoulder straps, a relaxed fit, and a playful layered skirt design.",
     colors: [
-      { name: "Red Gingham", hex: "#c14f4f" },
-      { name: "Blue Gingham", hex: "#5b7fa6" },
+      { name: "Red", hex: "#b52b2b" },
+      { name: "White", hex: "#f5f0e6" },
+      { name: "Brown", hex: "#70453a" }
     ],
   },
-  {
-    id: "pastel-cardigan",
-    name: "Pastel Ribbed Cardigan",
-    category: "Outerwear",
+    {
+    id: "bow-overlay-dress",
+    name: "Bow Sheer Overlay Dress",
+    category: "Dresses",
+    price: 19.99,
+    image:
+      "https://i.pinimg.com/1200x/a5/eb/62/a5eb627731feade7f54b7117e9e62fed.jpg",
+    description:
+      "A lovely dress featuring a soft sheer overlay, front bow detail, long puff sleeves, and a flowing skirt for an elegant look.",
+    colors: [
+      { name: "Pink", hex: "#f3c6c8" },
+      { name: "White", hex: "#ffffff" },
+      { name: "Cream", hex: "#f5eee6" }
+    ],
+  },
+    {
+    id: "sh-designed-higher-jacket",
+    name: "SH Designed Higher Jacket",
+    category: "Outerwears",
+    badge: "NEW",
+    price: 15.7,
+    image: "https://i.pinimg.com/1200x/d8/57/34/d85734cd702e74ee1016b55bd0b9af9d.jpg", 
+    description: "A modern, high-design outerwear piece that combines style and function. Perfect for layering in any season. Available in multiple colors.",
+    colors: [
+      { name: "Black", hex: "#000000" },
+      { name: "Olive", hex: "#556b2f" },
+      { name: "Navy", hex: "#1a2a4a" }
+    ]
+  },
+    {
+    id: "grey-wrap-a-line-skirt",
+    name: "Grey Wrap A-Line Mini Skirt",
+    category: "Bottoms",
     price: 13.99,
     image:
-      "https://images.unsplash.com/photo-1520975954732-35dd22299614?q=80&w=800&auto=format&fit=crop",
+      "https://i.pinimg.com/1200x/3f/40/55/3f4055aa5aa2d3fd90d2a48e7a27a529.jpg",
     description:
-      "Cropped ribbed-knit cardigan with pearl buttons. Layers effortlessly over camisoles and slip dresses.",
+      "A stylish grey mini wrap skirt with a relaxed A-line silhouette, featuring an adjustable side tie closure.",
     colors: [
-      { name: "Powder Blue", hex: "#b9d4e0" },
-      { name: "Blush", hex: "#eeb8c4" },
-      { name: "Butter Yellow", hex: "#eddd9a" },
+      { name: "Grey", hex: "#9e9e9e" },
+      { name: "Blue", hex: "#b4d3e3" },
+      { name: "Black", hex: "#2b2b2b" }
     ],
   },
-  {
-    id: "denim-mini-skirt",
-    name: "Frayed Hem Denim Mini",
-    category: "Skirts",
-    price: 11.5,
-    image:
-      "https://images.unsplash.com/photo-1583496661160-fb5886a5aad4?q=80&w=800&auto=format&fit=crop",
-    description:
-      "Light-wash denim mini with a raw frayed hem and button-front closure.",
-    colors: [
-      { name: "Light Wash", hex: "#a9c2d6" },
-      { name: "Dark Wash", hex: "#3b5878" },
-    ],
-  },
-  {
-    id: "satin-slip-dress",
-    name: "Satin Slip Dress",
+    {
+    id: "plaid-collared-sleeveless-dress",
+    name: "Plaid Collared Sleeveless Mini Dress",
     category: "Dresses",
-    badge: "NEW",
-    price: 18.5,
+    price: 13.99,
     image:
-      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=800&auto=format&fit=crop",
+      "https://i.pinimg.com/736x/10/97/f8/1097f888e6e790aaeb56696b172b958b.jpg",
     description:
-      "Bias-cut satin slip dress with adjustable straps. Dress up with heels or down with sneakers and a cardigan.",
+      "A stylish sleeveless mini dress featuring a collared V-neckline, a fitted buttoned bodice, and a gathered flared skirt with a classic checkered pattern.",
     colors: [
-      { name: "Champagne", hex: "#e8d3b0" },
-      { name: "Rose", hex: "#c98a96" },
-      { name: "Black", hex: "#2b2b2b" },
+      { name: "Blue/White", hex: "#9ec2d7" },
+      { name: "White", hex: "#ffffff" },
+      { name: "Black", hex: "#2b2b2b" }
     ],
   },
+    {
+    id: "wide-leg-pleated-trousers",
+    name: "Wide-Leg Pleated Trousers",
+    category: "Pants",
+    price: 13.99,
+    image:
+      "https://i.pinimg.com/736x/20/d2/4f/20d24f9813aaa2410790eec1d4013fe3.jpg",
+    description:
+      "A relaxed pair of wide-leg trousers featuring front pleats, an asymmetrical wrap-style waistband, and a voluminous, floor-length silhouette.",
+    colors: [
+      { name: "Black", hex: "#1a1a1a" },
+      { name: "Gray", hex: "#9e9e9e" },
+      { name: "Beige", hex: "#e8dcc8" }
+    ],
+  },
+  {
+  id: "pleated-wide-leg-shorts",
+  name: "Pleated Wide-Leg Shorts",
+  category: "Shorts",
+  price: 13.99,
+  image:
+    "https://i.pinimg.com/736x/7d/f4/29/7df4291b0c101bb8fc4bbae0756211be.jpg",
+  description:
+    "A chic pair of high-waisted wide-leg shorts featuring front pleats, a clean waistband, and a decorative button closure at the center.",
+  colors: [
+    { name: "Light Blue", hex: "#b8d0d3" },
+    { name: "White", hex: "#ffffff" },
+    { name: "Black", hex: "#2b2b2b" }
+  ],
+},
+{
+  id: "wide-leg-relaxed-denim-jeans",
+  name: "Wide-Leg Relaxed Denim Jeans",
+  category: "Jeans",
+  price: 13.99,
+  image:
+    "https://i.pinimg.com/736x/44/27/92/442792990d979c2ace984f3892f09fc0.jpg",
+  description:
+    "A pair of relaxed wide-leg denim trousers featuring classic front pockets, belt loops, a button and zip fly, and a distinctive brown leather tab detail at the waist.",
+  colors: [
+    { name: "Light Blue Wash", hex: "#b8cdd6" },
+    { name: "Dark Wash", hex: "#2c3e50" },
+    { name: "Black", hex: "#1a1a1a" }
+  ],
+}
 ];
 
 export function getProductById(id) {
