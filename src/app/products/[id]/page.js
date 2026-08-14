@@ -1,34 +1,20 @@
-"use client";
-
-import { use, useState } from "react";
 import { getProductById } from "@/data/products";
-import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import AddToCartButton from "./AddToCartButton"; // ឬប្រើ Client Component ខាងក្រោម
 
-export default function ProductDetailPage({ params }) {
-  const resolvedParams = use(params);
+export default async function ProductDetailPage({ params }) {
+  const resolvedParams = await params;
   const product = getProductById(resolvedParams.id);
-
-  const { addItem } = useCart();
-  const [selectedColor, setSelectedColor] = useState(product?.colors?.[0]?.name ?? null);
-  const [quantity, setQuantity] = useState(1);
-  const [added, setAdded] = useState(false);
 
   if (!product) {
     return (
       <div style={{ padding: "60px", textAlign: "center" }}>
         <h2>Product not found</h2>
         <p style={{ margin: "20px 0" }}>The piece you are looking for does not exist.</p>
-        <Link href="/products" className="btn btn-primary">Back to Products</Link>
+        <Link href="/products" style={{ color: "blue", textDecoration: "underline" }}>Back to Products</Link>
       </div>
     );
   }
-
-  const handleAddToCart = () => {
-    addItem(product, quantity, { color: selectedColor });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
 
   return (
     <div className="product-detail-container" style={{ maxWidth: "1100px", margin: "40px auto", padding: "0 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
@@ -53,19 +39,17 @@ export default function ProductDetailPage({ params }) {
 
         {product.colors && product.colors.length > 0 && (
           <div style={{ marginBottom: "25px" }}>
-            <label style={{ display: "block", fontWeight: "600", marginBottom: "8px" }}>Color: {selectedColor}</label>
+            <label style={{ display: "block", fontWeight: "600", marginBottom: "8px" }}>Available Colors</label>
             <div style={{ display: "flex", gap: "10px" }}>
               {product.colors.map((c) => (
-                <button
+                <div
                   key={c.name}
-                  onClick={() => setSelectedColor(c.name)}
                   style={{
-                    width: "32px",
-                    height: "32px",
+                    width: "28px",
+                    height: "28px",
                     borderRadius: "50%",
                     backgroundColor: c.hex,
-                    border: selectedColor === c.name ? "2px solid #000" : "1px solid #ddd",
-                    cursor: "pointer"
+                    border: "1px solid #ddd"
                   }}
                   title={c.name}
                 />
@@ -74,13 +58,12 @@ export default function ProductDetailPage({ params }) {
           </div>
         )}
 
-        <button
-          onClick={handleAddToCart}
-          className="btn btn-primary"
-          style={{ width: "100%", padding: "14px", fontSize: "16px", cursor: "pointer", backgroundColor: "var(--accent)", color: "#fff", border: "none", borderRadius: "8px" }}
+        <Link 
+          href="/products" 
+          style={{ display: "inline-block", padding: "12px 24px", backgroundColor: "#000", color: "#fff", borderRadius: "8px", textDecoration: "none", textAlign: "center" }}
         >
-          {added ? "Added to Cart! ✓" : "Add to Cart"}
-        </button>
+          Back to Catalog
+        </Link>
       </div>
     </div>
   );
