@@ -2,7 +2,6 @@ import Link from "next/link";
 import ProductCard from "@/components/productcard";
 import { fetchProducts } from "@/lib/api";
 
-const CATEGORIES = ["All Styles", "Shirts", "Skirts", "Dresses", "Shorts", "Pants", "Jeans"];
 
 export default async function HomePage() {
   const products = await fetchProducts();
@@ -51,14 +50,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <div className="filters-row">
-        {CATEGORIES.map((cat, i) => (
-          <button key={cat} className={`pill ${i === 0 ? "active" : ""}`}>
-            {cat}
-          </button>
-        ))}
-      </div>
 
       <section className="section">
         <div className="section-header">
