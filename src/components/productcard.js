@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="product-card">
-      <Link href={`/product/${product.id}`} className="thumb">
+      <Link href={`/products/${product.id}`} className="thumb">
         {product.badge && (
           <span className={badgeClass(product.badge)}>{product.badge}</span>
         )}
@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
 
       <div className="info">
         <span className="cat">{product.category.toUpperCase()}</span>
-        <Link href={`/product/${product.id}`}>
+        <Link href={`/products/${product.id}`}>
           <span className="name">{product.name}</span>
         </Link>
 
